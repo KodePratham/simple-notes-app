@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Note</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Notion Pad</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/note-detail.css">
 </head>
 <body>
     <div class="container">
@@ -12,9 +13,14 @@
         <div id="noteDetail" class="note-detail"></div>
         <div class="note-detail-actions">
             <button onclick="deleteNote()" class="delete-btn">Delete Note</button>
+            <button onclick="enableEditing()" class="edit-btn">Edit Note</button>
+            <button onclick="saveNote()" class="save-btn" style="display:none;">Save Note</button>
+            <button onclick="exportNoteAsPDF(noteId)" class="export-btn">Export as PDF</button>
             <button onclick="window.history.back()" class="back-btn">Back to Notes</button>
         </div>
     </div>
+    <script src="js/notes.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
     <script>
         const noteId = new URLSearchParams(window.location.search).get('id');
         const notes = JSON.parse(localStorage.getItem('notes')) || [];
@@ -22,8 +28,8 @@
         
         if (note) {
             document.getElementById('noteDetail').innerHTML = `
-                <h3>${note.title}</h3>
-                <p>${note.content}</p>
+                <h3 contenteditable="false" id="noteTitle">${note.title}</h3>
+                <p contenteditable="false" id="noteContent">${note.content}</p>
                 <small>Created: ${note.date}</small>
             `;
         }
@@ -33,6 +39,85 @@
                 notes.splice(noteId, 1);
                 localStorage.setItem('notes', JSON.stringify(notes));
                 window.history.back();
+            }
+        }
+
+        function enableEditing() {
+            document.getElementById('noteTitle').contentEditable = "true";
+            document.getElementById('noteContent').contentEditable = "true";
+            document.querySelector('.save-btn').style.display = 'inline-block';
+        }
+
+        function saveNote() {
+            const newTitle = document.getElementById('noteTitle').innerText;
+            const newContent = document.getElementById('noteContent').innerText;
+            note.title = newTitle;
+            note.content = newContent;
+            localStorage.setItem('notes', JSON.stringify(notes));
+            document.getElementById('noteTitle').contentEditable = "false";
+            document.getElementById('noteContent').contentEditable = "false";
+            document.querySelector('.save-btn').style.display = 'none';
+        }
+
+        async function exportNoteAsPDF(noteId) {
+            const note = notes[noteId];
+            if (note) {
+                const { PDFDocument, rgb, StandardFonts } = PDFLib;
+                const pdfDoc = await PDFDocument.create();
+                const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
+                const page = pdfDoc.addPage([600, 800]);
+                const { width, height } = page.getSize();
+
+                // Add title
+                page.drawText(note.title, {
+                    x: 50,
+                    y: height - 50,
+                    size: 24,
+                    font: timesRomanFont,
+                    color: rgb(0, 0, 0),
+                });
+
+                // Add date
+                page.drawText(`Created: ${note.date}`, {
+                    x: 50,
+                    y: height - 80,
+                    size: 12,
+                    font: timesRomanFont,
+                    color: rgb(0.4, 0.4, 0.4),
+                });
+
+                // Add content with line breaks
+                const contentLines = note.content.split('\n');
+                let yPosition = height - 120;
+                const lineHeight = 20;
+
+                for (const line of contentLines) {
+                    if (yPosition < 50) {
+                        // Add new page if content exceeds page height
+                        const newPage = pdfDoc.addPage([600, 800]);
+                        yPosition = height - 50;
+                    }
+                    
+                    page.drawText(line, {
+                        x: 50,
+                        y: yPosition,
+                        size: 12,
+                        font: timesRomanFont,
+                        color: rgb(0, 0, 0),
+                    });
+                    yPosition -= lineHeight;
+                }
+
+                const pdfBytes = await pdfDoc.save();
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${note.title}.pdf`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
             }
         }
     </script>

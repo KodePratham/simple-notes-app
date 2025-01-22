@@ -1,0 +1,239 @@
+/* Import Playfair Display font */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #000;
+    color: #fff;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    width: 95%;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: clamp(2.5rem, 7vw, 4rem);
+    font-family: 'Playfair Display', serif;
+    letter-spacing: -0.5px;
+}
+
+.note-form {
+    background: #1a1a1a;
+    padding: 2.5rem;
+    border-radius: 12px;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #333;
+    background-color: #000;
+    color: #fff;
+    border-radius: 4px;
+}
+
+textarea {
+    height: 200px;
+    resize: vertical;
+    margin-bottom: 1.5rem;
+}
+
+button {
+    background: #4dabf7;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    min-width: 120px;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+#notesContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 0.5rem;
+}
+
+.note {
+    background: #1a1a1a;
+    padding: 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 200px;
+    max-height: 300px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.note h3 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #4dabf7;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.note p {
+    color: #d3d3d3;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Changed from 6 to 4 for better preview */
+    -webkit-box-orient: vertical;
+    position: relative;
+    flex: 1;
+    margin-bottom: 2rem;
+}
+
+.note small {
+    color: #888;
+    font-size: 0.8rem;
+    position: absolute;
+    bottom: 1rem;
+    left: 1.5rem;
+}
+
+.note:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Replace the fade effect with a better solution */
+.note p::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2rem;
+    background: linear-gradient(transparent, #1a1a1a 90%);
+    pointer-events: none;
+}
+
+/* Improved responsive design */
+@media (max-width: 1024px) {
+    #notesContainer {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    #notesContainer {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+        padding: 0.25rem;
+    }
+
+    .note {
+        min-height: 160px;
+    }
+
+    .note h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .note p {
+        font-size: 0.85rem;
+        -webkit-line-clamp: 3; /* Adjusted for mobile */
+        margin-bottom: 1.5rem;
+    }
+
+    .note small {
+        font-size: 0.75rem;
+    }
+
+    .note-form {
+        padding: 2rem;
+    }
+
+    button {
+        padding: 12px 20px;
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    textarea {
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    #notesContainer {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+
+    .note {
+        min-height: 140px;
+    }
+
+    .note-form {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    input, textarea {
+        padding: 8px;
+        margin: 8px 0;
+    }
+
+    textarea {
+        height: 160px;
+    }
+
+    h1 {
+        font-size: clamp(1.2rem, 4vw, 2rem);
+        margin-bottom: 1.5rem;
+    }
+
+    button {
+        padding: 14px 20px;
+        font-size: 1.1rem;
+    }
+}
+
+#local-storage-message {
+    text-align: center;
+    margin-top: 2rem;
+    color: #666;
+}

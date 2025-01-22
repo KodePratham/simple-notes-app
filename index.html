@@ -3,19 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notes App</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Notion Pad</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Notes App</h1>
+        <h1>Notion Pad</h1>
         <div class="note-form">
             <input type="text" id="noteTitle" placeholder="Note Title">
             <textarea id="noteContent" placeholder="Write your note here..."></textarea>
             <button id="addNote">Add Note</button>
         </div>
         <div id="notesContainer"></div>
+        <div id="local-storage-message">
+            <p>All notes are stored locally.</p>
+        </div>
     </div>
-    <script src="script.js"></script>
+    <script src="js/notes.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

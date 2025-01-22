@@ -1,0 +1,117 @@
+.note-detail {
+    background: #1a1a1a;
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 20px 0;
+    color: #fff;
+    min-height: 300px;
+}
+
+.note-detail h3 {
+    font-size: 24px;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #4dabf7;
+    padding-bottom: 0.5rem;
+}
+
+.note-detail p {
+    font-size: 16px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    margin: 1rem 0;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 1rem;
+}
+
+.note-detail p::-webkit-scrollbar {
+    width: 8px;
+}
+
+.note-detail p::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+.note-detail p::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+.note-detail small {
+    color: #888;
+    display: block;
+    margin-top: 2rem;
+}
+
+.note-detail-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.note-detail-actions button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    min-width: 140px;
+    text-align: center;
+}
+
+.edit-btn { background: #4dabf7; }
+.save-btn { background: #2ecc71; }
+.delete-btn { background: #e74c3c; }
+.export-btn { background: #f39c12; }
+.back-btn { background: #95a5a6; }
+
+.note-detail-actions button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+[contenteditable="true"] {
+    border: 1px solid #4dabf7;
+    padding: 10px;
+    border-radius: 4px;
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    .note-detail {
+        padding: 1.5rem;
+    }
+
+    .note-detail h3 {
+        font-size: 20px;
+    }
+
+    .note-detail-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .note-detail-actions button {
+        padding: 14px 20px;
+        width: 100%;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .note-detail {
+        padding: 1rem;
+        margin: 10px 0;
+    }
+
+    .note-detail p {
+        font-size: 14px;
+        max-height: 50vh;
+    }
+
+    [contenteditable="true"] {
+        padding: 8px;
+    }
+}
