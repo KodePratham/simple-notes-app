@@ -1,6 +1,7 @@
-/* Import Playfair Display font */
+/* Base Styles and Typography */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
 
+/* Reset and Global Styles */
 * {
     margin: 0;
     padding: 0;
@@ -71,6 +72,7 @@ button:hover {
     transform: translateY(-2px);
 }
 
+/* Note Container and Grid Layout */
 #notesContainer {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -78,6 +80,7 @@ button:hover {
     padding: 0.5rem;
 }
 
+/* Individual Note Card Styling */
 .note {
     background: #1a1a1a;
     padding: 1.5rem;
@@ -127,7 +130,7 @@ button:hover {
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-/* Replace the fade effect with a better solution */
+/* Gradient Fade Effect for Note Content */
 .note p::after {
     content: '';
     position: absolute;
@@ -139,7 +142,20 @@ button:hover {
     pointer-events: none;
 }
 
-/* Improved responsive design */
+/* Add styles for social sharing */
+.social-share {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.social-share button {
+    margin: 0 10px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Responsive Design Breakpoints */
 @media (max-width: 1024px) {
     #notesContainer {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -237,4 +253,46 @@ button:hover {
     text-align: center;
     margin-top: 2rem;
     color: #666;
+}
+
+/* Responsive styles for share buttons */
+.social-share {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.share-button {
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.share-button:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+
+.share-button.twitter {
+    background-color: #1DA1F2;
+    color: white;
+}
+
+.share-button.linkedin {
+    background-color: #0077B5;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .share-button {
+        width: 35px;
+        height: 35px;
+    }
 }

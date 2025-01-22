@@ -23,6 +23,28 @@
     <link rel="canonical" href="https://notionpad.vercel.app">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Add structured data for better SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "NotionPad",
+      "description": "A powerful Notion note-taking app that enhances your productivity",
+      "applicationCategory": "Productivity Software",
+      "operatingSystem": "Web Browser"
+    }
+    </script>
+    
+    <!-- Add Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR-GA-ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'YOUR-GA-ID');
+    </script>
 </head>
 <body>
     <div class="container">
@@ -36,8 +58,17 @@
         <div id="local-storage-message">
             <p>All notes are stored locally.</p>
         </div>
+        <div class="social-share">
+            <button onclick="shareOnTwitter()" class="share-button twitter" aria-label="Share on Twitter">
+                <i class="fab fa-twitter"></i>
+            </button>
+            <button onclick="shareOnLinkedIn()" class="share-button linkedin" aria-label="Share on LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </button>
+        </div>
     </div>
     <script src="js/notes.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/social.js"></script>
 </body>
 </html>

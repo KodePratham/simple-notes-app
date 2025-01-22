@@ -1,3 +1,4 @@
+/* Note Detail Page Layout */
 .note-detail {
     background: #1a1a1a;
     padding: 2rem;
@@ -7,6 +8,7 @@
     min-height: 300px;
 }
 
+/* Note Content Typography */
 .note-detail h3 {
     font-size: 24px;
     margin-bottom: 1rem;
@@ -24,6 +26,7 @@
     padding-right: 1rem;
 }
 
+/* Scrollbar Styling */
 .note-detail p::-webkit-scrollbar {
     width: 8px;
 }
@@ -43,6 +46,7 @@
     margin-top: 2rem;
 }
 
+/* Action Buttons Layout */
 .note-detail-actions {
     display: flex;
     gap: 1rem;
@@ -61,6 +65,7 @@
     text-align: center;
 }
 
+/* Button Variants */
 .edit-btn { background: #4dabf7; }
 .save-btn { background: #2ecc71; }
 .delete-btn { background: #e74c3c; }
@@ -79,6 +84,7 @@
     outline: none;
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
     .note-detail {
         padding: 1.5rem;
