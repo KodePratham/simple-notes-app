@@ -19,6 +19,7 @@ body {
     margin: 0 auto;
     padding: 20px;
     width: 95%;
+    min-height: 100vh; /* Added minimum height */
 }
 
 h1 {
@@ -107,7 +108,6 @@ button:hover {
     line-height: 1.5;
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 4; /* Changed from 6 to 4 for better preview */
     -webkit-box-orient: vertical;
     position: relative;
     flex: 1;
@@ -151,6 +151,7 @@ button:hover {
     .container {
         width: 100%;
         padding: 15px;
+        min-height: 100vh; /* Ensuring minimum height is maintained */
     }
 
     #notesContainer {
@@ -170,7 +171,6 @@ button:hover {
 
     .note p {
         font-size: 0.85rem;
-        -webkit-line-clamp: 3; /* Adjusted for mobile */
         margin-bottom: 1.5rem;
     }
 
@@ -196,6 +196,7 @@ button:hover {
 @media (max-width: 480px) {
     .container {
         padding: 10px;
+        min-height: 100vh; /* Ensuring minimum height is maintained */
     }
 
     #notesContainer {
@@ -222,8 +223,8 @@ button:hover {
     }
 
     h1 {
-        font-size: clamp(1.2rem, 4vw, 2rem);
-        margin-bottom: 1.5rem;
+        font-size: clamp(2rem, 6vw, 2.5rem); /* Increased from 1.2rem to 2rem minimum */
+        margin-bottom: 2rem; /* Increased from 1.5rem */
     }
 
     button {

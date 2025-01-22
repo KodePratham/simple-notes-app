@@ -18,7 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
             noteElement.className = 'note';
             noteElement.innerHTML = `
                 <h3>${note.title}</h3>
-                <p>${note.content.substring(0, 150)}${note.content.length > 150 ? '...' : ''}</p>
+                <p>${note.content}</p>
+                <small>Created: ${note.date}</small>
             `;
             noteElement.addEventListener('click', () => viewNote(index));
             notesContainer.appendChild(noteElement);

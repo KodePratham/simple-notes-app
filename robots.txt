@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://notionpad.vercel.app/sitemap.xml
