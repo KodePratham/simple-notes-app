@@ -1,4 +1,15 @@
-
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
 Sitemap: https://notionpad.vercel.app/sitemap.xml
